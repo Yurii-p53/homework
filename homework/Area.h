@@ -77,12 +77,9 @@ public:
 
 
 
-#pragma once
-#include <iostream>
 
-using namespace std;
 
-// ==================== КЛАС POINT ====================
+
 class Point
 {
 private:
@@ -91,13 +88,11 @@ private:
 	static int count;
 
 public:
-	// Головний конструктор
 	Point(int xVal, int yVal) : x(xVal), y(yVal)
 	{
 		count++;
 	}
 
-	// Делегуючі конструктори
 	Point() : Point(0, 0) {}
 
 	Point(int val) : Point(val, val) {}
