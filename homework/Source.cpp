@@ -7,7 +7,7 @@ int Area::calcCount = 0;
 
 
 int Point::count = 0;
-int Fraction::count = 0;
+int Fract::count = 0;
 int Student::count = 0;
 
 
