@@ -19,22 +19,22 @@ public:
 
 	Book() : author("None"), title("None"), publisher("None"), year(0), quantity(0), pages(0)
 	{
-		cout << "Default constructor Book" << endl;
+		cout << "constructor Book" << endl;
 	}
 
 	explicit Book(const char* title) : author("None"), title(title), publisher("None"), year(0), quantity(0), pages(0)
 	{
-		cout << "Explicit constructor Book" << endl;
+		cout << "explic constructor Book" << endl;
 	}
 
 	Book(const char* author, const char* title, const char* publisher, int year, int quantity, int pages): author(author), title(title), publisher(publisher), year(year), quantity(quantity), pages(pages)
 	{
-		cout << "Parameterized constructor Book" << endl;
+		cout << "parametrized constructor Book" << endl;
 	}
 
 	Book(const Book& obj): author(obj.author),title(obj.title),publisher(obj.publisher),year(obj.year),quantity(obj.quantity),pages(obj.pages)
-	{
-		cout << "Copy constructor Book" << endl;
+	{	
+		cout << "copyconstr Book" << endl;
 	}
 
 	Book& operator=(const Book& obj)
@@ -118,18 +118,18 @@ public:
 	{
 		cout << "------------------------" << endl;
 
-		cout << "Author: ";
+		cout << "author: ";
 		author.print();
 
-		cout << "Title: ";
+		cout << "title: ";
 		title.print();
 
-		cout << "Publisher: ";
+		cout << "publisher: ";
 		publisher.print();
 
-		cout << "Year: " << year << endl;
-		cout << "Quantity: " << quantity << endl;
-		cout << "Pages: " << pages << endl;
+		cout << "year: " << year << endl;
+		cout << "quantity: " << quantity << endl;
+		cout << "pages: " << pages << endl;
 
 		cout << "------------------------" << endl;
 	}

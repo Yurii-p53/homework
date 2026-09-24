@@ -68,7 +68,7 @@ int main()
 
 	cout << endl;
 
-	Book b1("New Book");
+	Book b1("none");
 
 	b1.print();
 
