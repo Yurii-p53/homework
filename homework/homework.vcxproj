@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Book.h" />
     <ClInclude Include="Reservoir.h" />
+    <ClInclude Include="String.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source2.cpp" />
+    <ClCompile Include="Source3.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

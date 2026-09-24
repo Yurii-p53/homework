@@ -18,9 +18,15 @@
     <ClInclude Include="Reservoir.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="String.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source2.cpp">
+    <ClCompile Include="Source3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
