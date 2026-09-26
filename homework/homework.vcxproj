@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="Reservoir.h" />
     <ClInclude Include="String.h" />
@@ -26,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source3.cpp" />
+    <ClCompile Include="StringAndArray.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

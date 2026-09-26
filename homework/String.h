@@ -2,7 +2,6 @@
 #include<iostream>
 
 using namespace std;
-
 class String {
     char* str;
     int size;
@@ -63,33 +62,6 @@ public:
         delete[] str;
     }
 
-    int strlen(const char* s)
-    {
-        int i = 0;
-
-        while (s[i] != '\0')
-        {
-            i++;
-        }
-
-        return i;
-    }
-
-    void strcpy(char* a, const char* b)
-    {
-        int i = 0;
-
-        while (b[i] != '\0')
-        {
-            a[i] = b[i];
-            i++;
-        }
-
-        a[i] = '\0';
-    }
-
-
-
     void input()
     {
         cout << "vvedi stroky: \n";
@@ -107,24 +79,71 @@ public:
 
     }
 
-    
-    const char* get() const
-    {
-        return str;
-    }
-    
-
-
-    
-    void print() const
-    {
+    void print() {
         cout << str << endl;
     }
-
 
     static int getCount() {
         return count;
     }
 
+
+    String operator*(int count) const {
+        if (count <= 0) return String(""); 
+        int newSize = size * count;
+        char* temp = new char[newSize + 1];
+        temp[0] = '\0';
+
+        for (int i = 0; i < count; i++) {
+            strcat(temp, str); 
+        }
+
+        String result(temp);
+        delete[] temp;
+        return result;
+    }
+
+    String& operator++() {
+        for (int i = 0; i < size; i++) {
+            str[i] = toupper(str[i]); 
+        }
+        return *this;
+    }
+
+    bool operator!() const {
+        return size == 0 || str[0] == '\0';
+    }
+
+    char& operator[](int index) {
+        return str[index]; 
+    }
+
+
+
+
+    friend ostream& operator<<(ostream& out, const String& obj);
+    friend istream& operator>>(istream& in, String& obj);
+
+
 };
+
+ostream& operator<<(ostream& out, const String& obj) {
+    if (obj.str != nullptr) {
+        out << obj.str;
+    }
+    return out;
+}
+
+istream& operator>>(istream& in, String& obj) {
+    char buffer[256];
+    in.getline(buffer, 256); 
+
+    delete[] obj.str;
+    obj.size = strlen(buffer);
+    obj.str = new char[obj.size + 1];
+    strcpy(obj.str, buffer);
+
+    return in;
+}
+
 int String::count = 0;
