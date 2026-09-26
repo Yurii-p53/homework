@@ -22,9 +22,11 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="Reservoir.h" />
     <ClInclude Include="String.h" />
+    <ClInclude Include="Worker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source3.cpp" />
+    <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

@@ -24,9 +24,15 @@
     <ClInclude Include="Book.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Worker.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source3.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Worker.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
