@@ -30,6 +30,9 @@
     <ClInclude Include="Array.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Var.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source3.cpp">
@@ -39,6 +42,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="StringAndArray.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Var.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

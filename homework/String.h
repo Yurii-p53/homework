@@ -118,6 +118,10 @@ public:
         return str[index]; 
     }
 
+    char operator[](int index) const {
+        return str[index];
+    }
+
 
 
 
