@@ -33,6 +33,12 @@
     <ClInclude Include="Var.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source3.cpp">
