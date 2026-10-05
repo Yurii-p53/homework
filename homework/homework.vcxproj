@@ -19,20 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
-    <ClInclude Include="Book.h" />
+    <ClInclude Include="Calc.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Reservoir.h" />
-    <ClInclude Include="String.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Struct.h" />
-    <ClInclude Include="Var.h" />
-    <ClInclude Include="Worker.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source3.cpp" />
-    <ClCompile Include="StringAndArray.cpp" />
-    <ClCompile Include="Var.cpp" />
-    <ClCompile Include="Worker.cpp" />
+    <ClCompile Include="Calc.cpp" />
+    <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
