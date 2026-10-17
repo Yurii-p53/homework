@@ -18,6 +18,33 @@ struct BTreeNode
 		if (right != nullptr) right->print();
 	}
 
+
+	void printData()
+	{
+		if (left != nullptr) left->printData();
+
+		cout << "Машина: " << key << endl;
+		value.print();
+
+		if (right != nullptr) right->printData();
+	}
+
+	void printRange(const TKey& number1, const TKey& number2)
+	{
+		if (left != nullptr && key >= number1)
+			left->printRange(number1, number2);
+
+		if (key >= number1 && key <= number2)
+		{
+			cout << "Машина: " << key << endl;
+			value.print();
+		}
+
+		if (right != nullptr && key <= number2)
+			right->printRange(number1, number2);
+	}
+
+
 	void del()
 	{
 		if (left != nullptr) left->del();
@@ -28,8 +55,8 @@ struct BTreeNode
 	TVal* getValue(const TKey& key)
 	{
 		if (key == this->key) return &value;
-		else if (key < this->key && left != nullptr) left->getValue(key);
-		else if (key > this->key && right != nullptr) right->getValue(key);
+		else if (key < this->key && left != nullptr) return left->getValue(key);
+		else if (key > this->key && right != nullptr) return right->getValue(key);
 		else return nullptr;
 	}
 };
@@ -51,6 +78,8 @@ public:
 	bool push(const TKey& key, const TVal& val);
 	bool push_r(const TKey& key, const TVal& val);
 	TVal* getValue(const TKey& key);
+	void printData();
+	void printRange(const TKey& number1, const TKey& number2);
 };
 
 template<class TKey, class TVal>
@@ -155,4 +184,19 @@ TVal* BTree<TKey, TVal>::getValue(const TKey& key)
 {
 	if (root)
 		return root->getValue(key);
+}
+
+
+template<class TKey, class TVal>
+void BTree<TKey, TVal>::printData()
+{
+	if (root != nullptr)
+		root->printData();
+}
+
+template<class TKey, class TVal>
+void BTree<TKey, TVal>::printRange(const TKey& number1, const TKey& number2)
+{
+	if (root != nullptr)
+		root->printRange(number1, number2);
 }

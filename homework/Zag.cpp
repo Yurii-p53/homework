@@ -5,6 +5,8 @@
 
 #include"List.h"
 #include"BTree.h"
+#include "BasePolice.h"
+
 
 using namespace std;
 
@@ -13,20 +15,29 @@ using namespace std;
 int main()
 {
 
-	// 16.10.2026
+	BasePolice b;
 
+	b.addProtocol();
+	b.addProtocol();
 
-	BTree<int, int> b;
-	b.push_r(10, 10);
-	b.push_r(5, 5);
-	b.push_r(15, 15);
-	b.push_r(0, 0);
-	b.push_r(1, 1);
-	cout << b.push_r(2, 2) << endl;
-	cout << b.push_r(1, 1) << endl;
-	cout << b.push_r(3, 3) << endl;
 	b.print();
-	b.clear();
+
+	string number;
+	cout << "Номер машины: ";
+	cin >> number;
+
+	b.print(number);
+
+	string number1;
+	string number2;
+
+	cout << "1 номер: ";
+	cin >> number1;
+
+	cout << "2 номерр: ";
+	cin >> number2;
+
+	b.print(number1, number2);
 
 	// 12.10.2026
 

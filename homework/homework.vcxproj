@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasePolice.h" />
     <ClInclude Include="BTree.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="ForwardList.h" />
