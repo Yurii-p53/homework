@@ -1,12 +1,13 @@
 #pragma once
 
-#include "../homework/Node.h"
+#include"Node.h"
+
 
 template<class T, size_t maxSize>
-struct Stack {
+class Stack
+{
 	Node<T>* first;
-	size_t size;
-
+	size_t   size;
 
 public:
 	Stack();
@@ -14,17 +15,29 @@ public:
 	Stack(const Stack& obj);
 	Stack& operator=(const Stack& obj);
 
-	void push(const T& value);
-	void pop();
+	void   push(const T& value);
+	void   pop();
 	T& peek() const;
-	bool isEmpty() const;
-	void clear();
+	bool   isEmpty() const;
+	void   clear();
 	size_t getSize() const;
-	void show() const;
+	void   print() const;
 };
 
 template<class T, size_t maxSize>
 Stack<T, maxSize>::Stack() : first(nullptr), size(0) {}
+
+template<class T, size_t maxSize>
+Stack<T, maxSize>::~Stack()
+{
+	clear();
+}
+
+template<class T, size_t maxSize>
+Stack<T, maxSize>::Stack(const Stack& obj)
+{
+
+}
 
 template<class T, size_t maxSize>
 Stack<T, maxSize>& Stack<T, maxSize>::operator=(const Stack<T, maxSize>& obj)
@@ -55,18 +68,16 @@ void Stack<T, maxSize>::push(const T& value)
 	}
 }
 
-
-
 template<class T, size_t maxSize>
-bool Stack<T, maxSize>::isEmpty() const
+void Stack<T, maxSize>::pop()
 {
-	return size == 0; 
-}
-
-template<class T, size_t maxSize>
-size_t Stack<T, maxSize>::getSize() const
-{
-	return size; 
+	if (size > 0)
+	{
+		Node<T>* temp = first;
+		first = first->next;
+		delete temp;
+		size--;
+	}
 }
 
 template<class T, size_t maxSize>
@@ -75,6 +86,11 @@ T& Stack<T, maxSize>::peek() const
 	return first->value;
 }
 
+template<class T, size_t maxSize>
+bool Stack<T, maxSize>::isEmpty() const
+{
+	return size == 0;
+}
 
 template<class T, size_t maxSize>
 void Stack<T, maxSize>::clear()
@@ -82,19 +98,24 @@ void Stack<T, maxSize>::clear()
 	Node<T>* temp = first;
 	while (temp)
 	{
-		temp = temp->first;
+		first = first->next;
 		delete temp;
 		temp = first;
 	}
 	size = 0;
 }
 
+template<class T, size_t maxSize>
+size_t Stack<T, maxSize>::getSize() const
+{
+	return size;
+}
 
 template<class T, size_t maxSize>
-void Stack<T, maxSize>::show() const
+void Stack<T, maxSize>::print() const
 {
 	Node<T>* temp = first;
-	while (temp != nullptr)
+	while (temp)
 	{
 		cout << temp->value << " ";
 		temp = temp->next;

@@ -21,9 +21,6 @@
     <ClInclude Include="Struct.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Calc.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
@@ -36,15 +33,15 @@
     <ClInclude Include="ForwardList.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="BTree.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Calc.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Stack.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Zag.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
