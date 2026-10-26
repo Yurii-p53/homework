@@ -2,6 +2,7 @@
 #include<iostream>
 #include<Windows.h>
 
+#include<Animals.h>
 
 #include"List.h"
 #include"BTree.h"
@@ -15,29 +16,49 @@ using namespace std;
 int main()
 {
 
-	BasePolice b;
+	Animal* a[3];
 
-	b.addProtocol();
-	b.addProtocol();
+	a[0] = new Cat("Tom", 3);
+	a[1] = new Dog("Spike", 5);
+	a[2] = new Parrot("Kesha", 2);
 
-	b.print();
+	for (int i = 0; i < 3; i++)
+	{
+		a[i]->print();
+		cout << endl;
+	}
 
-	string number;
-	cout << "Номер машины: ";
-	cin >> number;
+	for (int i = 0; i < 3; i++)
+	{
+		delete a[i];
+	}
 
-	b.print(number);
 
-	string number1;
-	string number2;
 
-	cout << "1 номер: ";
-	cin >> number1;
 
-	cout << "2 номерр: ";
-	cin >> number2;
+	//BasePolice b;
 
-	b.print(number1, number2);
+	//b.addProtocol();
+	//b.addProtocol();
+
+	//b.print();
+
+	//string number;
+	//cout << "Номер машины: ";
+	//cin >> number;
+
+	//b.print(number);
+
+	//string number1;
+	//string number2;
+
+	//cout << "1 номер: ";
+	//cin >> number1;
+
+	//cout << "2 номерр: ";
+	//cin >> number2;
+
+	//b.print(number1, number2);
 
 	// 12.10.2026
 
