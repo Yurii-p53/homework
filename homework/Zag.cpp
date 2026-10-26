@@ -4,6 +4,8 @@
 
 #include<Animals.h>
 
+#include<Files.h>
+
 #include"List.h"
 #include"BTree.h"
 #include "BasePolice.h"
@@ -15,6 +17,22 @@ using namespace std;
 
 int main()
 {
+	File* f = new File;
+	f->Display("test.txt");
+	cout << endl << endl;
+	delete f;
+
+	f = new ASCIIFile;
+	f->Display("test.txt");
+	cout << endl << endl;
+	delete f;
+
+	f = new BinaryFile;
+	f->Display("test.txt");
+	cout << endl << endl;
+	delete f;
+
+
 
 	Animal* a[3];
 

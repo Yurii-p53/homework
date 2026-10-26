@@ -45,6 +45,9 @@
     <ClInclude Include="Animals.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="Files.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Zag.cpp">
