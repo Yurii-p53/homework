@@ -1,329 +1,281 @@
 #pragma once
 
-#include <initializer_list>
 #include <iostream>
-
-#include "Node.h"
+#include <cstdlib>
 
 using namespace std;
 
-
 template<class T>
-class List {
-
-	Node<T>* first;
-	Node<T>* last;
-	size_t   size;
-
-	Node<T>* getNode(size_t index) const;
+class Node
+{
 public:
-	List();
-	List(initializer_list<T> list);
-	List(const List& obj);
-	List<T>& operator=(const List& obj);
-	~List();
+	T value;
+	Node<T>* next;
+	Node<T>* prev;
 
-	void push_front(const T& value);
-	void push_back(const T& value);
-	void insert(const T& value, size_t index);
-
-	void pop_front();
-	void pop_back();
-	void remove(size_t index);
-
-	void erase(const T& value);
-	void erase_if(bool(*predicate)(const T&));
-
-
-	T& front() const;
-	T& back() const;
-	T& operator[](size_t index) const;
-	T  at(size_t index) const;
-
-	size_t getSize() const;
-	void print() const;
-	void clear();
-
-	int firstIndex(const T& value);
-	int lastIndex(const T& value);
-
-	List splice(size_t index1, size_t index2);
-
-	List operator+(const List& list);
+	Node(T value)
+	{
+		this->value = value;
+		next = nullptr;
+		prev = nullptr;
+	}
 };
 
 template<class T>
-Node<T>* List<T>::getNode(size_t index) const
+class List
 {
-	Node<T>* pos = nullptr;
-	if (index < size / 2)
+	Node<T>* first;
+	Node<T>* last;
+	size_t size;
+
+public:
+	List()
 	{
-		pos = first;
-		for (size_t i = 0; i < index; i++)
+		first = nullptr;
+		last = nullptr;
+		size = 0;
+	}
+
+	~List()
+	{
+		clear();
+	}
+
+	void push_back(T value)
+	{
+		Node<T>* temp = new Node<T>(value);
+
+		if (first == nullptr)
 		{
-			pos = pos->next;
-		}
-	}
-	else
-	{
-		pos = last;
-		for (size_t i = 0; i < size - index - 1; i++)
-		{
-			pos = pos->prev;
-		}
-	}
-	return pos;
-}
-
-template<class T>
-List<T>::List() : first(nullptr), last(nullptr), size(0)
-{
-
-}
-
-template<class T>
-List<T>::List(initializer_list<T> list)
-{
-	for (T elem : list) push_back(elem);
-}
-
-template<class T>
-List<T>::List(const List& obj) : first(nullptr), last(nullptr), size(0)
-{
-	for (size_t i = 0; i < obj.size; i++)
-	{
-		push_back(obj[i]);
-	}
-}
-
-template<class T>
-inline List<T>& List<T>::operator=(const List& obj)
-{
-	return *this;
-}
-
-template<class T>
-List<T>::~List()
-{
-	clear();
-}
-
-template<class T>
-void List<T>::push_front(const T& value)
-{
-	if (size == 0)
-	{
-		first = last = new Node<T>(value);
-	}
-	else
-	{
-		Node<T>* newNode = new Node<T>(value);
-		newNode->next = first;
-		first->prev = newNode;
-		first = newNode;
-	}
-	size++;
-}
-
-template<class T>
-void List<T>::push_back(const T& value)
-{
-	if (size == 0)
-	{
-		first = last = new Node<T>(value);
-	}
-	else
-	{
-		last->next = new Node<T>(value);
-		last->next->prev = last;
-		last = last->next;
-	}
-	size++;
-}
-
-
-
-template<class T>
-void List<T>::erase(const T& value)
-{
-	Node<T>* temp = first;
-
-	while (temp)
-	{
-		if (temp->value == value)
-		{
-			if (temp == first)
-			{
-				pop_front();
-				temp = first;
-			}
-			else if (temp == last)
-			{
-				pop_back();
-				temp = nullptr;
-			}
-			else
-			{
-				Node<T>* pos = temp->prev;
-				temp = temp->next;
-				pos->next = temp;
-				temp->prev = pos;
-				delete pos->next->prev;
-				size--;
-			}
+			first = temp;
+			last = temp;
 		}
 		else
 		{
-			temp = temp->next;
+			last->next = temp;
+			temp->prev = last;
+			last = temp;
 		}
-	}
-}
 
-
-
-template<class T>
-void List<T>::insert(const T& value, size_t index)
-{
-	if (index == 0)
-	{
-		push_front(value);
-	}
-	else if (index == size)
-	{
-		push_back(value);
-	}
-	else
-	{
-		Node<T>* pos = getNode(index - 1);
-		Node<T>* newNode = new Node<T>(value);
-		newNode->next = pos->next;
-		pos->next->prev = newNode;
-		pos->next = newNode;
-		newNode->prev = pos;
 		size++;
 	}
 
-}
-
-template<class T>
-void List<T>::pop_front()
-{
-	if (size > 0)
+	void push_front(T value)
 	{
-		Node<T>* temp = first;
-		first = first->next;
-		delete temp;
-		size--;
-		if (first != nullptr) first->prev = nullptr;
-	}
-}
+		Node<T>* temp = new Node<T>(value);
 
-template<class T>
-void List<T>::pop_back()
-{
-	if (size > 0)
-	{
-		if (size == 1)
+		if (first == nullptr)
 		{
-			delete first;
-			first = last = nullptr;
-			size = 0;
+			first = temp;
+			last = temp;
 		}
 		else
 		{
-			last = last->prev;
-			delete last->next;
-			last->next = nullptr;
+			temp->next = first;
+			first->prev = temp;
+			first = temp;
 		}
-		size--;
-	}
-}
 
-template<class T>
-void List<T>::remove(size_t index)
-{
-	if (index == 0)
-	{
-		pop_front();
+		size++;
 	}
 
-	else if (index == size - 1)
+	void insert(size_t index, T value)
 	{
-		pop_back();
-	}
-	else
-	{
-		Node<T>* pos = getNode(index - 1);
-		Node<T>* temp = pos->next;
-		pos->next = pos->next->next;
-		pos->next->prev = pos;
-
-		delete temp;
-		size--;
-	}
-
-
-
-}
-
-
-template<class T>
-void List<T>::print() const
-{
-	Node<T>* temp = first;
-	while (temp)
-	{
-		cout << temp->value << " ";
-		temp = temp->next;
-
-	}
-	cout << endl;
-}
-
-template<class T>
-void List<T>::clear()
-{
-	Node<T>* temp = first;
-	while (temp)
-	{
-		first = first->next;
-		delete temp;
-		temp = first;
-	}
-	size = 0;
-	last = nullptr;
-}
-
-template<class T>
-int List<T>::firstIndex(const T& value)
-{
-	Node<T>* temp = first;
-	size_t index = 0;
-	while (temp)
-	{
-		if (temp->value == value) return index;
-		temp = temp->next;
-		index++;
-	}
-
-	return -1;
-}
-
-template<class T>
-int List<T>::lastIndex(const T& value)
-{
-	Node<T>* temp = last;
-	size_t index = size - 1;
-	while (temp)
-	{
-		if (temp->value == value)
+		if (index == 0)
 		{
-			return size - index - 1;
+			push_front(value);
+			return;
 		}
-		temp = temp->prev;
-		++index;
+
+		if (index >= size)
+		{
+			push_back(value);
+			return;
+		}
+
+		Node<T>* temp = first;
+
+		for (int i = 0; i < index; i++)
+			temp = temp->next;
+
+		Node<T>* node = new Node<T>(value);
+
+		node->next = temp;
+		node->prev = temp->prev;
+		temp->prev->next = node;
+		temp->prev = node;
+
+		size++;
 	}
 
-	return -1;
-}
+	void remove(T value)
+	{
+		Node<T>* temp = first;
 
+		while (temp != nullptr)
+		{
+			if (temp->value == value)
+			{
+				if (temp == first)
+					first = temp->next;
+				else
+					temp->prev->next = temp->next;
+
+				if (temp == last)
+					last = temp->prev;
+				else
+					temp->next->prev = temp->prev;
+
+				delete temp;
+				size--;
+				return;
+			}
+
+			temp = temp->next;
+		}
+	}
+
+	void erase(size_t index)
+	{
+		if (index >= size)
+			return;
+
+		Node<T>* temp = first;
+
+		for (int i = 0; i < index; i++)
+			temp = temp->next;
+
+		if (temp == first)
+			first = temp->next;
+		else
+			temp->prev->next = temp->next;
+
+		if (temp == last)
+			last = temp->prev;
+		else
+			temp->next->prev = temp->prev;
+
+		delete temp;
+		size--;
+	}
+
+	int firstIndex(T value) const
+	{
+		Node<T>* temp = first;
+		int index = 0;
+
+		while (temp != nullptr)
+		{
+			if (temp->value == value)
+				return index;
+
+			temp = temp->next;
+			index++;
+		}
+
+		return -1;
+	}
+
+	int lastIndex(T value) const
+	{
+		Node<T>* temp = last;
+		int index = size - 1;
+
+		while (temp != nullptr)
+		{
+			if (temp->value == value)
+				return index;
+
+			temp = temp->prev;
+			index--;
+		}
+
+		return -1;
+	}
+
+	T getRandom()
+	{
+		if (size == 0)
+			return T();
+
+		int number = rand() % size;
+		Node<T>* temp = first;
+
+		for (int i = 0; i < number; i++)
+			temp = temp->next;
+
+		return temp->value;
+	}
+
+	T& operator[](size_t index)
+	{
+		Node<T>* temp = first;
+
+		for (int i = 0; i < index && temp != nullptr; i++)
+			temp = temp->next;
+
+		return temp->value;
+	}
+
+	List<T> operator+(const List<T>& obj)
+	{
+		List<T> result;
+
+		Node<T>* temp = first;
+
+		while (temp != nullptr)
+		{
+			result.push_back(temp->value);
+			temp = temp->next;
+		}
+
+		temp = obj.first;
+
+		while (temp != nullptr)
+		{
+			result.push_back(temp->value);
+			temp = temp->next;
+		}
+
+		return result;
+	}
+
+	bool empty() const
+	{
+		return first == nullptr;
+	}
+
+	size_t getSize() const
+	{
+		return size;
+	}
+
+	void print() const
+	{
+		Node<T>* temp = first;
+
+		while (temp != nullptr)
+		{
+			cout << temp->value << " ";
+			temp = temp->next;
+		}
+
+		cout << endl;
+	}
+
+	void clear()
+	{
+		Node<T>* temp = first;
+
+		while (temp != nullptr)
+		{
+			Node<T>* next = temp->next;
+			delete temp;
+			temp = next;
+		}
+
+		first = nullptr;
+		last = nullptr;
+		size = 0;
+	}
+};

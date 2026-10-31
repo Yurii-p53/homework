@@ -30,6 +30,7 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Struct.h" />
+    <ClInclude Include="WarOfWorld.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Zag.cpp" />

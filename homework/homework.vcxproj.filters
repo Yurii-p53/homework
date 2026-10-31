@@ -48,6 +48,9 @@
     <ClInclude Include="Files.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="WarOfWorld.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Zag.cpp">

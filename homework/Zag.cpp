@@ -2,13 +2,8 @@
 #include<iostream>
 #include<Windows.h>
 
-#include<Animals.h>
+#include "WarOfWorld.h"
 
-#include<Files.h>
-
-#include"List.h"
-#include"BTree.h"
-#include "BasePolice.h"
 
 
 using namespace std;
@@ -17,40 +12,8 @@ using namespace std;
 
 int main()
 {
-	File* f = new File;
-	f->Display("test.txt");
-	cout << endl << endl;
-	delete f;
-
-	f = new ASCIIFile;
-	f->Display("test.txt");
-	cout << endl << endl;
-	delete f;
-
-	f = new BinaryFile;
-	f->Display("test.txt");
-	cout << endl << endl;
-	delete f;
-
-
-
-	Animal* a[3];
-
-	a[0] = new Cat("Tom", 3);
-	a[1] = new Dog("Spike", 5);
-	a[2] = new Parrot("Kesha", 2);
-
-	for (int i = 0; i < 3; i++)
-	{
-		a[i]->print();
-		cout << endl;
-	}
-
-	for (int i = 0; i < 3; i++)
-	{
-		delete a[i];
-	}
-
+	WarOfWord game(5);
+	game.game();
 
 
 
