@@ -28,6 +28,7 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="WarOfWorld.h" />

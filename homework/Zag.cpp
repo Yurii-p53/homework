@@ -2,18 +2,23 @@
 #include<iostream>
 #include<Windows.h>
 
-#include "WarOfWorld.h"
-
-
+#include "Animals.h"
+#include "SmartPointer.h"
 
 using namespace std;
 
 
 
+
+
 int main()
 {
-	WarOfWord game(5);
-	game.game();
+
+	int a = 10;
+	int&& b = 20;
+
+	//WarOfWord game(5);
+	//game.game();
 
 
 

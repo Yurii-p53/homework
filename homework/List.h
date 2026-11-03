@@ -1,7 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <cstdlib>
 
 using namespace std;
 
@@ -81,13 +80,16 @@ public:
 
 	void insert(size_t index, T value)
 	{
+		if (index > size)
+			throw out_of_range("Wrong index!");
+
 		if (index == 0)
 		{
 			push_front(value);
 			return;
 		}
 
-		if (index >= size)
+		if (index == size)
 		{
 			push_back(value);
 			return;
@@ -133,12 +135,14 @@ public:
 
 			temp = temp->next;
 		}
+
+		throw invalid_argument("Element not found!");
 	}
 
 	void erase(size_t index)
 	{
 		if (index >= size)
-			return;
+			throw out_of_range("Wrong index!");
 
 		Node<T>* temp = first;
 
@@ -179,7 +183,7 @@ public:
 	int lastIndex(T value) const
 	{
 		Node<T>* temp = last;
-		int index = size - 1;
+		int index = (int)size - 1;
 
 		while (temp != nullptr)
 		{
@@ -196,7 +200,7 @@ public:
 	T getRandom()
 	{
 		if (size == 0)
-			return T();
+			throw underflow_error("List is empty!");
 
 		int number = rand() % size;
 		Node<T>* temp = first;
@@ -209,9 +213,12 @@ public:
 
 	T& operator[](size_t index)
 	{
+		if (index >= size)
+			throw out_of_range("Wrong index!");
+
 		Node<T>* temp = first;
 
-		for (int i = 0; i < index && temp != nullptr; i++)
+		for (int i = 0; i < index; i++)
 			temp = temp->next;
 
 		return temp->value;

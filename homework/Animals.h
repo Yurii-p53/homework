@@ -4,7 +4,14 @@
 
 using namespace std;
 
-class Animal
+class Prinable
+{
+public:
+
+	virtual void print() = 0;
+};
+
+class Animal : public Prinable
 {
 	string name;
 	int age;
@@ -45,7 +52,7 @@ public:
 };
 
 
-class Dog : public Animal
+class Dog : public Animal, public Prinable
 {
 public:
 	Dog(string n, int a) : Animal(n, a) {}
@@ -53,10 +60,18 @@ public:
 	virtual string getType() override { return "Dog"; }
 
 	virtual string getVoice() override { return "Woof woof"; }
+
+	virtual void print() override
+	{
+		cout << "Dog: " << getName() << endl;
+		cout << "Age: " << getAge() << endl;
+		cout << "Type: " << getType() << endl;
+		cout << "Voice: " << getVoice() << endl;
+	}
 };
 
 
-class Parrot : public Animal
+class Parrot : public Animal, public Prinable
 {
 public:
 	Parrot(string n, int a) : Animal(n, a) {}
