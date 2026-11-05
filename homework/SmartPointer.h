@@ -1,39 +1,104 @@
 #pragma once
+
 #include <iostream>
 
 using namespace std;
 
 template<class T>
-class SmartPointer
+class SharedPointer
 {
     T* ptr;
+    int* count;
 
 public:
 
-    SmartPointer(T* p = nullptr) : ptr(p) {}
-
-    ~SmartPointer()
+    SharedPointer(T* p = nullptr)
     {
-        delete ptr;
+        ptr = p;
+
+        if (ptr != nullptr)
+            count = new int(1);
+        else
+            count = nullptr;
     }
 
-    SmartPointer(const SmartPointer& p) = delete;
-    SmartPointer& operator=(const SmartPointer& p) = delete;
+    ~SharedPointer()
+    {
+        if (count != nullptr)
+        {
+            (*count)--;
 
-    SmartPointer(SmartPointer&& p)
+            if (*count == 0)
+            {
+                delete ptr;
+                delete count;
+            }
+        }
+    }
+
+    SharedPointer(const SharedPointer& p)
     {
         ptr = p.ptr;
-        p.ptr = nullptr;
+        count = p.count;
+
+        if (count != nullptr)
+            (*count)++;
     }
 
-    SmartPointer& operator=(SmartPointer&& p)
+    SharedPointer& operator=(const SharedPointer& p)
     {
         if (this != &p)
         {
-            delete ptr;
+            if (count != nullptr)
+            {
+                (*count)--;
+
+                if (*count == 0)
+                {
+                    delete ptr;
+                    delete count;
+                }
+            }
 
             ptr = p.ptr;
+            count = p.count;
+
+            if (count != nullptr)
+                (*count)++;
+        }
+
+        return *this;
+    }
+
+    SharedPointer(SharedPointer&& p) noexcept
+    {
+        ptr = p.ptr;
+        count = p.count;
+
+        p.ptr = nullptr;
+        p.count = nullptr;
+    }
+
+    SharedPointer& operator=(SharedPointer&& p) noexcept
+    {
+        if (this != &p)
+        {
+            if (count != nullptr)
+            {
+                (*count)--;
+
+                if (*count == 0)
+                {
+                    delete ptr;
+                    delete count;
+                }
+            }
+
+            ptr = p.ptr;
+            count = p.count;
+
             p.ptr = nullptr;
+            p.count = nullptr;
         }
 
         return *this;
@@ -41,6 +106,9 @@ public:
 
     T& operator*()
     {
+        if (ptr == nullptr)
+            throw exception("pointer is empty");
+
         return *ptr;
     }
 
@@ -54,6 +122,14 @@ public:
         return ptr;
     }
 
+    int getCount()
+    {
+        if (count == nullptr)
+            return 0;
+
+        return *count;
+    }
+
     operator bool()
     {
         return ptr != nullptr;
@@ -63,23 +139,34 @@ public:
     {
         if (ptr != p)
         {
-            delete ptr;
+            if (count != nullptr)
+            {
+                (*count)--();
+
+                if (*count == 0)
+                {
+                    delete ptr;
+                    delete count;
+                }
+            }
+
             ptr = p;
+
+            if (ptr != nullptr)
+                count = new int(1);
+            else
+                count = nullptr;
         }
     }
 
-    T* release()
-    {
-        T* p = ptr;
-        ptr = nullptr;
-
-        return p;
-    }
-
-    void swap(SmartPointer& p)
+    void swap(SharedPointer& p)
     {
         T* temp = ptr;
         ptr = p.ptr;
         p.ptr = temp;
+
+        int* tempCount = count;
+        count = p.count;
+        p.count = tempCount;
     }
 };
