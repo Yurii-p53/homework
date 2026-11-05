@@ -31,6 +31,7 @@
     <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Struct.h" />
+    <ClInclude Include="Train.h" />
     <ClInclude Include="WarOfWorld.h" />
   </ItemGroup>
   <ItemGroup>

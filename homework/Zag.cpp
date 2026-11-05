@@ -4,6 +4,7 @@
 
 #include "Animals.h"
 #include "SmartPointer.h"
+#include "Train.h"
 
 using namespace std;
 
@@ -13,9 +14,46 @@ using namespace std;
 
 int main()
 {
+	Station station;
 
-	int a = 10;
-	int&& b = 20;
+	int choice;
+
+	do
+	{
+		cout << "\n1. Add train" << endl;
+		cout << "2. Print all trains" << endl;
+		cout << "3. Find train" << endl;
+		cout << "0. Exit" << endl;
+
+		cout << "your choice -> ";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			station.addTrain();
+			break;
+
+		case 2:
+			station.print();
+			break;
+
+		case 3:
+			station.findTrain();
+			break;
+
+		case 0:
+			cout << "exit" << endl;
+			break;
+
+		default:
+			cout << "Error" << endl;
+		}
+
+	} while (choice != 0);
+
+	//int a = 10;
+	//int&& b = 20;
 
 	//WarOfWord game(5);
 	//game.game();
